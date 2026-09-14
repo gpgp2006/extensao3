@@ -1,0 +1,18 @@
+\providecommand{\abntreprintinfo}[1]{%
+ \citeonline{#1}}
+\setlength{\labelsep}{0pt}\begin{thebibliography}{}
+\providecommand{\abntrefinfo}[3]{}
+\providecommand{\abntbstabout}[1]{}
+\abntbstabout{v-1.9.7 }
+
+\bibitem[{Correio da Manhã} 1970]{foto-carlos-drummond}
+\abntrefinfo{{Correio da Manhã}}{{Correio da Manhã}}{1970}
+{{Correio da Manhã}. \emph{Carlos Drummond de Andrade}. Rio de Janeiro: O Correio, 1970.
+Dispon{\'\i}vel em: \url{https://sian.an.gov.br/}. Acesso em: 05 de maio de 2023.}
+
+\bibitem[Tavares, Meira e Amaral 2020]{tavares2020inteligencia}
+\abntrefinfo{Tavares, Meira e Amaral}{TAVARES; MEIRA; AMARAL}{2020}
+{TAVARES, L.~A.; MEIRA, M.~C.; AMARAL, S.~F. do. Intelig{\^e}ncia artificial na educa{\c{c}}{\~a}o: Survey.
+\emph{Brazilian Journal of Development}, v.~6, n.~7, p. 48699--48714, 2020.}
+
+\end{thebibliography}

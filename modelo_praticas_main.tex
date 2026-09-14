@@ -1,0 +1,150 @@
+% Este documento foi adaptado por Marcos Laureano a partir do original disponibilizado
+% em https://www.overleaf.com/latex/templates/modelo-canonico-do-ifpr-com-logo/mqtrmrvzyfsb feito por Rafael Silva Santos
+
+\documentclass[12pt, openright, oneside, a4paper, english, brazilian]{abntex2}
+
+\input{pacotes.tex}
+\input{configuracoes_ifpr.tex} %% aqui você deve alterar dados como nomes dos autores e orientadores
+
+\begin{document}
+
+\input{coisas_obrigatorias.tex} %%aqui também tem coisas que precisam ser alteradas
+\input{coisas_opcionais.tex}
+
+% ---
+% RESUMOS
+% ---
+\input{resumo.tex}
+
+% ---
+% inserir lista de ilustrações OPCIONAL
+% ---
+\input{listas_simbolos.tex}
+
+
+
+% ---
+% inserir o sumario OBRIGATÓRIO
+% ---
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+
+% ---
+% ----------------------------------------------------------
+% ELEMENTOS TEXTUAIS
+% ----------------------------------------------------------
+\textual
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% TEXTO AQUI
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{introducao/capitulo_introducao.tex}
+\input{delimitacao/capitulo_delimitacao.tex}
+\input{justificativa/capitulo_justificativa.tex}
+\input{objetivo/capitulo_objetivo.tex}
+\input{metodologia/capitulo_metodologia.tex}
+\input{resultados/capitulo_resultados_discussoes.tex}
+\input{consideracoes_finais/capitulo_consideracoes_finais.tex}	
+
+
+%este capítulo não é obrigatório, por isso está no meio do texto. Ele serve como apoio e orientação do documento.
+\chapter{REFERÊNCIAS BIBLIOGRÁFICAS}
+\label{referencias-bibliograficas}
+	Todos os materiais consultados e/ou citados, devem vir nas referências . Para isso, siga as normas contidas no Manual de normas para apresentação de trabalhos acadêmicos do Instituto Federal do Paraná.
+
+	É importante anotar e listar aqui todos os livros, sites, artigos, vídeos, que você referenciou ao longo do trabalho. Evite fazer isso ao final, assim a chance de esquecer alguma referência aumenta.
+
+	As referências dos documentos citados no texto devem ser apresentadas em ordem alfabética, ao final do trabalho.
+
+    Outras dúvidas sobre as normas técnicas sobre as normas técnicas de entrega de trabalhos no IFPR podem ser encontradas no manual \href{https://editora.ifpr.edu.br/index.php/aeditora/catalog/book/72}{Manual de Normas para Apresentação de Trabalhos Acadêmicos do Instituto Federal do Paraná: Padrão ABNT}.
+
+	Preocupe-se em montar o arquivo bibtex do \LaTeX com cuidado e utilizar o comando \verb|\cite| com cuidado durante o texto, que as referências serão montadas automaticamente e dentro das normas.
+
+%este capítulo não é obrigatório, por isso está no meio do texto. Ele serve como apoio e orientação do documento.	
+\chapter{AJUDA COM \LaTeX}
+	Alguns links para facilitar a vida com o \LaTeX, além de sempre poder utilizar a própria Inteligência Artificial para auxiliar com algumas coisas:
+
+	\begin{itemize}
+		\item Link para este documento no Overleaf: \url{https://www.overleaf.com/read/mscjtgrycfvf#063e2d}
+		\item Link para meu GitHub (com alguns exemplos de tabelas, apresentação, figuras, algoritmos e link para livro PDF que ensina \LaTeX:) \url{https://github.com/mlaureano/LaTeX}
+		\item Muitos exemplos de gráficos \url{https://texample.net/};
+		\item Equivalente ao Stack Overflow para programação, só que para o \LaTeX  \url{https://tex.stackexchange.com/}
+		\item Tutoriais do Overleaf \url{https://docs.overleaf.com/getting-started/latex-tutorials};
+		\item Para ajudar a criar tabelas no \LaTeX: \url{https://www.tablesgenerator.com/}, sempre configure para o estilo ``Bookstabs table style'';
+		\item Para ajudar na hora de criar equações matemáticas no \LaTeX: \url{https://editor.codecogs.com/};
+		\item Grupo de usuários do \LaTeX no Brasil: \href{https://groups.google.com/g/latex-br?pli=1}{Latex-BR};
+		\item Vários exemplos de como fazer gráficos com pgfplots: \url{https://pgfplots.sourceforge.net/gallery.html}
+        \item Referência rápida para o \LaTeX: \url{https://quickref.me/latex.html}.
+	\end{itemize}
+	
+
+
+% ----------------------------
+
+% ----------------------------------------------------------
+% ELEMENTOS PÓS-TEXTUAIS
+% ----------------------------------------------------------
+\postextual
+% ----------------------------------------------------------
+
+% ----------------------------------------------------------
+% Referências bibliográficas OBRIGATORIO
+% ----------------------------------------------------------
+\bibliography{referencias/referencias}
+
+% ----------------------------------------------------------
+% Glossário
+% ----------------------------------------------------------
+%
+% Consulte o manual da classe abntex2 para orientações sobre o glossário.
+%
+%\glossary
+
+% ----------------------------------------------------------
+% Apêndices
+% ----------------------------------------------------------
+
+% ---
+% Inicia os apêndices OPCIONAL
+% ---
+\begin{apendicesenv}
+
+% Imprime uma página indicando o início dos apêndices
+\partapendices
+
+% ----------------------------------------------------------
+\input{apendices/apendice_a_iag.tex}
+
+
+
+%se tiver mais apendices, crie um novo arquivo tex e coloque no diretório.
+% ----------------------------------------------------------
+\chapter{Nullam elementum urna vel imperdiet sodales elit ipsum pharetra ligula
+ac pretium ante justo a nulla curabitur tristique arcu eu metus}
+% ----------------------------------------------------------
+\lipsum[55-57]
+
+\end{apendicesenv}
+% ---
+
+
+% ----------------------------------------------------------
+% Anexos
+% ----------------------------------------------------------
+
+% ---
+% Inicia os anexos OPCIONAL
+% ---
+\begin{anexosenv}
+
+% Imprime uma página indicando o início dos anexos
+\partanexos
+%% crie um arquivo .tex para cada anexo.
+\input{anexos/anexos.tex}
+
+\end{anexosenv}
+
+
+
+\end{document}
