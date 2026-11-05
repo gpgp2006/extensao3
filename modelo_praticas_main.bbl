@@ -5,10 +5,10 @@
 \providecommand{\abntbstabout}[1]{}
 \abntbstabout{v-1.9.7 }
 
-\bibitem[{Correio da Manhã} 1970]{foto-carlos-drummond}
-\abntrefinfo{{Correio da Manhã}}{{Correio da Manhã}}{1970}
-{{Correio da Manhã}. \emph{Carlos Drummond de Andrade}. Rio de Janeiro: O Correio, 1970.
-Dispon{\'\i}vel em: \url{https://sian.an.gov.br/}. Acesso em: 05 de maio de 2023.}
+\bibitem[Araujo 2015]{abntex2-wiki-como-customizar}
+\abntrefinfo{Araujo}{ARAUJO}{2015}
+{ARAUJO, L.~C. \emph{Como customizar o abnTeX2}. 2015. Wiki do abnTeX2.
+Dispon{\'\i}vel em: \url{https://github.com/abntex/abntex2/wiki/ComoCustomizar}. Acesso em: 27 abr 2015.}
 
 \bibitem[Tavares, Meira e Amaral 2020]{tavares2020inteligencia}
 \abntrefinfo{Tavares, Meira e Amaral}{TAVARES; MEIRA; AMARAL}{2020}
