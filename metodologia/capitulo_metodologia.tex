@@ -1,24 +1,58 @@
 \chapter{METODOLOGIA}
 \label{capitulo-metodologia}
-	Nesta parte dedique-se à apresentação dos materiais usados e da metodologia assumida.
+    A metodologia deste trabalho estrutura-se a partir de duas frentes que se complementam, sendo elas o desenvolvimento e a consolidação de uma infraestrutura em nuvem funcional e o processo pedagógico de transposição didática desse conhecimento em um produto educacional em formato de videoaulas.
 
 	\section{Materiais}
-	\label{capitulo-metodologia-materiais}
-	Descrever os materiais utilizados (de acordo com a especificação técnica), e quantidade conforme atividade a ser realizada. Mostrar ferramentas usadas, objetos, aplicativos, equipamentos, etc.
+    Para a concepção do ambiente computacional e a produção do material didático, foram empregados os recursos de infraestrutura, softwares de rede e utilitários descritos a seguir:
 
-	Evite simplesmente listar os materiais, procure descrever as etapas (PROCEDIMENTOS) da atividade prática. Devem ser apresentadas as equações e fotos da atividade prática desenvolvida. Não deve conter os resultados do trabalho.  
+\subsection{Recursos de Nuvem e Hardware}
+\begin{itemize}
+    \item \textbf{Oracle Cloud Infrastructure (OCI) - Camada \textit{Always Free}:} Instância de computação baseada em arquitetura ARM (\textit{Ampere}, dimensionada com 2 OCPUs, 12 GB de memória RAM e volume de armazenamento em bloco (\textit{Boot Volume}) de 200GB, associada a um endereço IPv4 público atribuído dinamicamente que permanece fixo enquanto a instância estiver ativa.
+    \item \textbf{Local de Trabalho:} Computador pessoal utilizado para acesso administrativo remoto via terminal, geração e envio de chaves criptográficas SSH.
+\end{itemize}
 
-	As figuras no trabalho devem ser anunciadas no texto, centralizada e o nome da figura deve ser colocado em cima da mesma, com letra Arial 12, espaçamento entre linhas simples. A fonte deve ser colocada embaixo da figura com letra Arial 10, espaçamento simples entre linhas. 
-
-	Quando se colocam \textbf{quadros} ou \textbf{tabelas}, estes também devem ser centralizados. As tabelas e quadros devem ser de boa qualidade, inseridas no texto. A indicação da fonte é feita na parte inferior da tabela/quadro. As tabelas contêm números e os quadros somente texto e ambos precisam trazer descrição dos resultados, ou seja, a tabela ou quadro precisa ser explicado para o leitor.
-
-	Todo material citado deve constar nas referências. Deve ser apresentada preferencialmente em ordem cronológica.
+\subsection{Sistemas Operacionais, Servidores e Plataformas de Rede}
+\begin{itemize}
+    \item \textbf{Sistema Operacional Hospedeiro:} Distribuição Linux (\textit{Ubuntu Server}) executada na instância da OCI.
+    \item \textbf{Núcleo de Aplicação de Jogos:} \textit{PaperMC}, configurado em conjunto com a \textit{Java Virtual Machine} (JVM) parametrizada pelas \textit{Aikar's flags} para otimização da coleta de lixo (\textit{Garbage Collection}).
+    \item \textbf{Módulos de Compatibilidade e Interface:} \textit{GeyserMC} e \textit{Floodgate} para viabilizar o acesso simultâneo entre clientes das edições Java e Bedrock; \textit{BlueMap} para a renderização de mapas tridimensionais do mundo gerado; e \textit{MiniMOTD} para padronização estética da lista de servidores.
+    \item \textbf{Servidor Web Reverso:} \textit{Nginx}, empregado na recepção e encaminhamento do tráfego HTTP/HTTPS direcionado às interfaces web do servidor.
+    \item \textbf{Serviços de DNS e Conectividade de Borda:} Provedor \textit{DuckDNS} para resolução dinâmica de nomes na etapa inicial; plataforma \textit{Registro.br} para aquisição e delegação de autoridade do domínio de topo (\textit{Top-Level Domain} - TLD); e \textit{Cloudflare} para o gerenciamento autoritativo de zonas DNS, mitigação de ataques.
+    \item \textbf{Túneis Criptografados e Segurança de Borda:} Daemon \textit{cloudflared} para criação do \textit{Cloudflare Tunnel} dedicado ao tráfego do protocolo SSH, listas de controle de rede (\textit{Security Lists} na OCI) e \textit{iptables} para filtragem local de pacotes.
+\end{itemize}
 
 
 	\section{Métodos}
 	\label{capitulo-metodologia-metodos}
-	O conteúdo desta parte do trabalho deve conter: a descrição da área e do universo de estudo, as fontes que serão utilizadas para a coleta de dados para realização do estudo, população amostra ou sujeitos da extensão e/ou empresa alvo do estudo, tipo e método da pesquisa usado na construção da extensão, bem como os procedimentos e métodos escolhidos para a extensão (como pretende fazer).
-	
-	Apresentar os procedimentos metodológicos do estudo ocorridos no projeto de extensão, tais como: os referentes à \uline{natureza da extensão} (básica ou aplicada), à \uline{abordagem do problema} (quantitativa ou qualitativa), \uline{aos objetivos} (exploratória, descritiva, explicativa) e aos \uline{procedimentos metodológicos} a serem adotados, todos devem ser citados e explicados, justificando que realmente se trata desse tipo de extensão que você acredita que seja.
-	
-	Apresentar também as metodologias próprias da área de estudo citando normas, leis, métodos cientificamente aceitos, como por exemplo, a implementação, estruturação, criação ou utilização de um software.
+    O método adotado classifica-se como uma pesquisa aplicada e de caráter descritivo, fundamentada na documentação empírica de um caso de uso real de engenharia de infraestrutura. O fluxo metodológico foi dividido em cinco etapas sequenciais:
+
+\subsection{Etapa 1: Provisionamento e Parametrização da Camada de Rede Inicial}
+A primeira fase consistiu na criação da conta na OCI e no provisionamento de uma máquina virtual com processador ARM Ampere, configurada com 2 OCPUs, 12 GB de RAM e sistema operacional Linux. Com a máquina alocada e o endereço IPv4 público associado, estabeleceram-se as primeiras regras de comunicação:
+\begin{enumerate}
+    \item Liberação seletiva nas \textit{Security Lists} da Virtual Cloud Network (VCN) da Oracle para permitir tráfego de entrada (\textit{ingress}) nas portas essenciais de administração e operação;
+    \item Adequação e persistência de regras de filtragem em nível de núcleo com o \textit{iptables}, tratando o redirecionamento de portas e evitando bloqueios involuntários originados das diretivas padrão da imagem do sistema operacional.
+\end{enumerate}
+
+\subsection{Etapa 2: Resolução de Nomes Dinâmica e Implantação da Aplicação}
+Com a infraestrutura de rede acessível, procedeu-se à instalação dos componentes de software:
+\begin{enumerate}
+    \item Configuração de um serviço de DNS Dinâmico (DDNS) através do \textit{DuckDNS}, viabilizando um endereço nominal gratuito para testes preliminares de conexão sem dependência direta do endereço IP numérico;
+    \item Instalação do ambiente de execução Java (JDK) e compilação do servidor \textit{PaperMC}, configurando scripts de inicialização otimizados com parâmetros de memória da JVM recomendados pela comunidade técnica (\textit{Aikar's flags});
+    \item Integração dos módulos \textit{GeyserMC} e \textit{Floodgate}, validando a comunicação híbrida entre jogadores que utilizam computadores e dispositivos móveis/consoles.
+\end{enumerate}
+
+\subsection{Etapa 3: Aquisição de Domínio, Delegação de DNS e Camada de Segurança}
+Visando eliminar a fragilidade de domínios públicos de terceiros e elevar o padrão de resiliência, a metodologia evoluiu para uma arquitetura com domínio próprio:
+\begin{enumerate}
+    \item Registro de domínio próprio junto ao \textit{Registro.br} e alteração dos servidores de nome autoritativos (\textit{nameservers}) para a rede da \textit{Cloudflare};
+    \item Configuração de registros DNS (\textit{A} e \textit{SRV}) para roteamento adequado das conexões de entrada do jogo;
+    \item Ativação dos recursos de mitigação de incidentes da Cloudflare, protegendo o ponto de origem contra sobrecargas e ataques de negação de serviço.
+\end{enumerate}
+
+\subsection{Etapa 4: Fortalecimento da Infraestrutura, Túnel SSH e Filtragem de Tráfego}
+Para consolidar um modelo de administração remota seguro (\textit{hardening}), implementaram-se defesas em profundidade:
+\begin{enumerate}
+    \item Implantação do \textit{Cloudflare Tunnel} (\textit{cloudflared}), estabelecendo uma conexão criptografada de saída da VPS diretamente para a rede de borda da Cloudflare. Esse mecanismo permitiu fechar integralmente a porta 22 de entrada nas \textit{Security Lists} e no \textit{iptables}, extinguindo qualquer redirecionamento público de portas para fins administrativos e mantendo o acesso SSH viável exclusivamente por meio do túnel autenticado;
+    \item Criação de script de rotina, executado periodicamente para consulta de blocos CIDR alocados regionalmente (utilizando listas de endereçamento nacional fornecidas por bases de dados públicas como o \textit{ipdeny.com}), aplicando regras no \textit{firewall} para bloquear tráfego automatizado e conexões maliciosas provenientes de fora da zona de operação pretendida;
+    \item Configuração do servidor \textit{Nginx} para publicação segura de serviços complementares (como o mapa tridimensional gerado pelo \textit{BlueMap}), com diretivas para posterior rastreamento e indexação em mecanismos de busca na web.
+\end{enumerate}

@@ -3,12 +3,16 @@
 \chapter{DELIMITAÇÃO DO PROBLEMA}
 \label{capitulo-delimitacao}
 
-	Neste momento, procure destacar o problema de seu trabalho. Aborde de maneira objetiva a pergunta-problema que instiga a sua investigação.
+A criação de ambientes multijogador em jogos digitais, especialmente em títulos de mundo aberto como o \textit{Minecraft}, frequentemente encontra limitações de arquitetura e financeiras, restringindo o acesso da comunidade aos próprios momentos de lazer. A forma mais simples de viabilizar um mapa coletivo é a hospedagem local (\textit{self-hosting}) no computador de um dos participantes. No entanto, essa abordagem impõe restrições na operação, como, por exemplo, o grupo ficar refém da disponibilidade do proprietário do mundo, a máquina anfitriã sofrer degradação de desempenho, tanto do jogo quanto do servidor, devido à sobrecarga de processamento e memória, e a rede residencial ficar vulnerável a ataques, caso portas aleatórias sejam abertas no roteador doméstico.
 
-	Introduza questões reflexivas, tais como:
-	\begin{itemize}
-		\item Que questões-chave precisam ser respondidas?
-		\item Quais as implicações práticas da ação de extensão? 
-		\item Quais foram as principais lacunas nesta proposta de extensão?
-		\item Quais foram os principais desafios nesta proposta de trabalho?
-	\end{itemize}
+Diante dessa barreira apresentada, os usuários costumam recorrer a duas alternativas consolidadas no mercado, ambas com pontos negativos fortes:
+\begin{itemize}
+    \item Plataformas de hospedagem gratuita, como Aternos, nas quais operam com filas de espera para a inicialização de instâncias, encerramento forçado do serviço quando o mundo fica vazio por poucos minutos, cotas pequenas de memória RAM e capacidade de processamento reduzida, comprometendo a estabilidade caso haja múltiplos jogadores ou modificações no jogo;
+    \item Serviços comerciais especializados de hospedagem paga, como EnxadaHost, nos quais comercializam planos de entrada com recursos de \textit{hardware} limitados (como 3 GB de memória RAM e processamento convencional) a valores recorrentes, muitas vezes com restrições na customização avançada de \textit{plugins} e no acesso a serviços auxiliares.
+\end{itemize}
+
+Com este cenário apresentado, surge a questão abaixo: 
+
+``Como orientar a comunidade de usuários na concepção, configuração e sustentação de um servidor dedicado e permanente, utilizando uma infraestrutura em nuvem de alta capacidade computacional de forma 100\% gratuita, sem a necessidade de manter computadores domésticos ligados por longos períodos e garantindo a segurança contra acessos indevidos?''
+
+Um dos principais problemas enfrentados, está na falta de materiais de instrução em português, que unifiquem, com nível técnico e linguagem didática, todas as etapas operacionais necessárias, partindo do registro e provisionamento de nós na nuvem até as configurações de DNS, túneis SSH e filtragem de pacotes em nível de \textit{firewall}.
